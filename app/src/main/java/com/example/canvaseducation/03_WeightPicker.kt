@@ -2,6 +2,7 @@ package com.example.canvaseducation
 
 import android.graphics.Color
 import android.graphics.Paint
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -57,7 +58,9 @@ fun WeightPicker(
         }
         //draw lines
         for (i in minWeight..maxWeight) {
-            val angleInRad = (i - initialWeight + angle - 90) * (PI / 180f).toFloat()
+            val angleInRad = (i - initialWeight + angle - 90) * (PI / 180f).toFloat() //degree to rad
+            Log.i("TAG", "Angle in RAD: ($i - $initialWeight + $angle - 90) * ($PI / 180f) = $angleInRad")
+
             val lineType = when {
                 i % 10 == 0 -> LineType.TenStep
                 i % 5 == 0 -> LineType.FiveStep
@@ -77,10 +80,15 @@ fun WeightPicker(
                 x = (outerRadius - lineLength) * cos(angleInRad) + circleCenter.x,
                 y = (outerRadius - lineLength) * sin(angleInRad) + circleCenter.y
             )
+            Log.d("TAG", "Line start: x = ($outerRadius - $lineLength) * ${cos(angleInRad)} + ${circleCenter.x} = ${(outerRadius - lineLength) * cos(angleInRad) + circleCenter.x}")
+            Log.d("TAG", "Line start: y = ($outerRadius - $lineLength) * ${sin(angleInRad)} + ${circleCenter.y} = ${(outerRadius - lineLength) * sin(angleInRad) + circleCenter.y}")
+
             val lineEnd = Offset(
                 x = outerRadius * cos(angleInRad) + circleCenter.x,
                 y = outerRadius * sin(angleInRad) + circleCenter.y
             )
+            Log.v("TAG", "Line end: x = $outerRadius * ${cos(angleInRad)} + ${circleCenter.x} = ${outerRadius * cos(angleInRad) + circleCenter.x}")
+            Log.v("TAG", "Line end: y = $outerRadius * ${sin(angleInRad)} + ${circleCenter.y} = ${outerRadius * sin(angleInRad) + circleCenter.y}")
 
             drawLine(
                 color = lineColor,
