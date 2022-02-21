@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -17,7 +18,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
@@ -30,16 +33,46 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            var weight by remember {
+                mutableStateOf(80)
+            }
+
             Box(modifier = Modifier.fillMaxSize()) {
                 WeightPicker(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .align(Alignment.Center),
+                        .height(300.dp)
+                        .align(Alignment.BottomCenter),
                     style = ScaleStyle(
                         scaleWidth = 150.dp
                     )
                 ) {
+                    weight = it
+                }
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(400.dp)
+                        .align(Alignment.BottomCenter),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = weight.toString(),
+                        style = TextStyle(
+                            fontSize = 50.sp
+                        )
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "KG",
+                        modifier = Modifier
+                            .padding(top = 20.dp),
+                        style = TextStyle(
+                            fontSize = 30.sp
+                        ),
+                        color = Color.Green
+                    )
                 }
             }
         }
