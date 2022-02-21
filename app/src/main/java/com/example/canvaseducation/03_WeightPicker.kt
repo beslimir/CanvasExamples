@@ -7,6 +7,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.unit.dp
+import java.lang.Math.*
+import kotlin.math.cos
+import kotlin.math.sin
 
 @Composable
 fun WeightPicker(
@@ -24,6 +28,9 @@ fun WeightPicker(
     }
     var circleCenter by remember {
         mutableStateOf(Offset.Zero)
+    }
+    var angle by remember {
+        mutableStateOf(0f)
     }
 
     Canvas(modifier = modifier) {
@@ -48,6 +55,41 @@ fun WeightPicker(
                 }
             )
         }
+        //draw lines
+        for (i in minWeight..maxWeight) {
+            val angleInRad = (i - initialWeight + angle - 90) * (PI / 180f).toFloat()
+            val lineType = when {
+                i % 10 == 0 -> LineType.TenStep
+                i % 5 == 0 -> LineType.FiveStep
+                else -> LineType.Normal
+            }
+            val lineLength = when (lineType) {
+                LineType.Normal -> style.normalLineLength.toPx()
+                LineType.FiveStep -> style.fiveStepLineLength.toPx()
+                LineType.TenStep -> style.tenStepLineLength.toPx()
+            }
+            val lineColor = when (lineType) {
+                LineType.Normal -> style.normalLineColor
+                LineType.FiveStep -> style.fiveStepLineColor
+                LineType.TenStep -> style.tenStepLineColor
+            }
+            val lineStart = Offset(
+                x = (outerRadius - lineLength) * cos(angleInRad) + circleCenter.x,
+                y = (outerRadius - lineLength) * sin(angleInRad) + circleCenter.y
+            )
+            val lineEnd = Offset(
+                x = outerRadius * cos(angleInRad) + circleCenter.x,
+                y = outerRadius * sin(angleInRad) + circleCenter.y
+            )
+
+            drawLine(
+                color = lineColor,
+                start = lineStart,
+                end = lineEnd,
+                strokeWidth = 1.dp.toPx()
+            )
+        }
+
     }
 
 }

@@ -34,7 +34,10 @@ class MainActivity : ComponentActivity() {
                 WeightPicker(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .align(Alignment.Center)
+                        .align(Alignment.Center),
+                    style = ScaleStyle(
+                        scaleWidth = 150.dp
+                    )
                 ) {
 
                 }
