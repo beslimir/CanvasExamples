@@ -55,9 +55,11 @@ fun WeightPicker(
                             y = circleCenter.x - offset.x,
                             x = circleCenter.y - offset.y
                         ) * 180 / PI.toFloat()
+                        Log.d("drag", "dragStart: ${circleCenter.x} ${offset.x} ${circleCenter.y} ${offset.y} -> $dragStartedAngle")
                     },
                     onDragEnd = {
                         oldAngle = angle
+                        Log.d("drag", "dragEnd: $angle")
                     }
                 ) { change, _ ->
                     val touchAngle = -atan2(
