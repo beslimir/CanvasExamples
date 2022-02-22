@@ -1,4 +1,4 @@
-package com.example.canvaseducation.ui
+package com.example.canvaseducation
 
 import android.util.Log
 import androidx.compose.foundation.Canvas
