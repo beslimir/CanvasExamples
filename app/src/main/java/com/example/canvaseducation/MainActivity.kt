@@ -33,48 +33,52 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var weight by remember {
-                mutableStateOf(80)
-            }
+            PathBasics()
 
-            Box(modifier = Modifier.fillMaxSize()) {
-                WeightPicker(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .align(Alignment.BottomCenter),
-                    style = ScaleStyle(
-                        scaleWidth = 150.dp
-                    )
-                ) {
-                    weight = it
-                }
+//            Lines below are used for WeightPicker()
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(400.dp)
-                        .align(Alignment.BottomCenter),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = weight.toString(),
-                        style = TextStyle(
-                            fontSize = 50.sp
-                        )
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = "KG",
-                        modifier = Modifier
-                            .padding(top = 20.dp),
-                        style = TextStyle(
-                            fontSize = 30.sp
-                        ),
-                        color = Color.Green
-                    )
-                }
-            }
+//            var weight by remember {
+//                mutableStateOf(80)
+//            }
+//
+//            Box(modifier = Modifier.fillMaxSize()) {
+//                WeightPicker(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(300.dp)
+//                        .align(Alignment.BottomCenter),
+//                    style = ScaleStyle(
+//                        scaleWidth = 150.dp
+//                    )
+//                ) {
+//                    weight = it
+//                }
+//
+//                Row(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .height(400.dp)
+//                        .align(Alignment.BottomCenter),
+//                    horizontalArrangement = Arrangement.Center
+//                ) {
+//                    Text(
+//                        text = weight.toString(),
+//                        style = TextStyle(
+//                            fontSize = 50.sp
+//                        )
+//                    )
+//                    Spacer(modifier = Modifier.width(4.dp))
+//                    Text(
+//                        text = "KG",
+//                        modifier = Modifier
+//                            .padding(top = 20.dp),
+//                        style = TextStyle(
+//                            fontSize = 30.sp
+//                        ),
+//                        color = Color.Green
+//                    )
+//                }
+//            }
         }
     }
 }
