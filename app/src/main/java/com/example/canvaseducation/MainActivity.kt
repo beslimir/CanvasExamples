@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PathArrowAnimation()
+            RotateARectangle()
 
 //            Lines below are used for WeightPicker()
 
