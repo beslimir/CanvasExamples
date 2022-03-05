@@ -33,11 +33,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GenderPicker(
-                modifier = Modifier.fillMaxSize()
-            ) {
+            DrawImageInCanvas()
 
-            }
+
+
+
+
+//          Lines below are used for GenderPicker()
+
+//            GenderPicker(
+//                modifier = Modifier.fillMaxSize()
+//            ) {
+//
+//            }
+
+
+
+
 
 //            Lines below are used for WeightPicker()
 
